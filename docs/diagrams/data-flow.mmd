@@ -1,0 +1,14 @@
+flowchart LR
+  User[Member] --> Web[Web UI]
+  Web --> API[API Gateway]
+  API --> Auth[Auth and RBAC]
+  Auth --> DB[(Users and Roles)]
+
+  API --> Content[Content Service]
+  Content --> DB
+  Content --> Search[(Search Index)]
+  Content --> Storage[(Object Storage)]
+
+  API --> Audit[Audit Logger]
+  Audit --> LogStore[(Log Store)]
+  API --> Email[Email Service]

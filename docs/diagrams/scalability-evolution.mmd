@@ -1,0 +1,18 @@
+flowchart LR
+  subgraph MVP
+    M1[Modular Monolith]
+    M2[Relational DB]
+    M3[Basic Search]
+  end
+  subgraph Growth
+    G1[Read Replicas]
+    G2[Dedicated Search]
+    G3[CDN and Cache]
+  end
+  subgraph Scale
+    S1[Service Extraction]
+    S2[Multi-Region]
+    S3[Event-Driven Workflows]
+  end
+
+  MVP --> Growth --> Scale

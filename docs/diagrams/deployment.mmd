@@ -1,0 +1,29 @@
+flowchart TB
+  subgraph Edge
+    CDN[CDN]
+  end
+
+  subgraph App
+    Web[Web App]
+    API[API Service]
+    Worker[Background Worker]
+  end
+
+  subgraph Data
+    DB[(Relational DB)]
+    Search[(Search)]
+    Storage[(Object Storage)]
+    Cache[(Cache)]
+    LogStore[(Log Store)]
+  end
+
+  CDN --> Web
+  Web --> API
+  API --> DB
+  API --> Search
+  API --> Storage
+  API --> Cache
+  API --> LogStore
+  Worker --> DB
+  Worker --> Search
+  Worker --> Email[Email Provider]

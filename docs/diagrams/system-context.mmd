@@ -1,0 +1,15 @@
+graph TD
+  Vets[Veterinarians] --> Web[Baytic Web App]
+  Students[Students] --> Web
+  Public[Public Visitors] --> Web
+  Admins[Administrators] --> Web
+
+  Web --> API[Baytic API]
+  API --> DB[(Relational Database)]
+  API --> Search[Search Service]
+  API --> Storage[(Object Storage)]
+
+  API --> Auth[Auth Provider]
+  API --> Pay[Payment Provider]
+  API --> Email[Email Service]
+  Web --> CDN[CDN]

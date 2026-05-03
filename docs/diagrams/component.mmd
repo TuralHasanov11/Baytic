@@ -1,0 +1,24 @@
+graph TB
+  Web[Web UI]
+  API[Modular API]
+
+  API --> AuthM[Auth and Membership]
+  API --> ProfileM[Profiles and Portal]
+  API --> ContentM[Resources and Publications]
+  API --> CaseM[Case Library]
+  API --> EventM[Events and Announcements]
+  API --> CommunityM[Discussion Groups]
+  API --> DirectoryM[Directory and Discovery]
+  API --> SearchM[Search and Indexing]
+  API --> AuditM[Audit Logging]
+
+  AuthM --> DB[(Relational Database)]
+  ProfileM --> DB
+  ContentM --> DB
+  CaseM --> DB
+  EventM --> DB
+  CommunityM --> DB
+  DirectoryM --> DB
+  SearchM --> Search[(Search)]
+  ContentM --> Storage[(Object Storage)]
+  AuditM --> LogStore[(Log Store)]
