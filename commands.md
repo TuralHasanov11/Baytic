@@ -23,3 +23,8 @@ dotnet test ./Baytic.sln
 ```sh
 docker run -e GITHUB_AUTH_TOKEN=<your access token> gcr.io/openssf/scorecard:stable --repo=https://github.com/TuralHasanov11/Baytic
 ```
+
+### Add project to solution
+```sh
+dotnet sln add ./src/ProjectName/ProjectName.csproj
+```
