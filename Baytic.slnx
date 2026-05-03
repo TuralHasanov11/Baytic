@@ -1,8 +1,13 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/Baytic.Api/Baytic.Api.csproj" />
+    <Project Path="src/Baytic.Application/Baytic.Application.csproj" />
+    <Project Path="src/Baytic.Domain/Baytic.Domain.csproj" />
+    <Project Path="src/Baytic.Infrastructure/Baytic.Infrastructure.csproj" />
     <Project Path="src/SharedKernel/SharedKernel.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/Baytic.Api.Tests/Baytic.Api.Tests.csproj" />
     <Project Path="tests/SharedKernel.Tests/SharedKernel.Tests.csproj" />
   </Folder>
 </Solution>
