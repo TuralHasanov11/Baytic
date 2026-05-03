@@ -1,0 +1,57 @@
+{
+  "realm": "Baytic",
+  "enabled": true,
+  "sslRequired": "none",
+  "displayName": "Baytic",
+  "clients": [
+    {
+      "clientId": "web-api",
+      "name": "Web Api",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "your-client-secret-for-web-api",
+      "redirectUris": [
+        "http://localhost:5000/signin-oidc"
+      ],
+      "webOrigins": [
+        "+"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "test-user",
+      "enabled": true,
+      "email": "test-user@localhost",
+      "emailVerified": true,
+      "firstName": "Test",
+      "lastName": "User",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ]
+    },
+    {
+      "username": "admin",
+      "enabled": true,
+      "email": "admin@localhost",
+      "emailVerified": true,
+      "firstName": "Dotnet",
+      "lastName": "Admin",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin",
+          "temporary": false
+        }
+      ]
+    }
+  ]
+}

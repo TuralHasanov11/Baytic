@@ -69,6 +69,12 @@ The platform consolidates clinical protocols, case libraries, condition database
   - Clinical guidelines, toolkits, and condition database with searchable taxonomy.
   - Peer-reviewed case library with tagging and structured metadata.
 
+- **Blog and articles** (Priority: Must-have)
+  - Blog post management with authored content from veterinarians and expert contributors.
+  - Blog post listing, search, and filtering by topic, specialty, and publication date.
+  - Author profiles with credentials and expertise tags.
+  - Comment functionality for members to discuss blog posts.
+
 - **Publications and research hub** (Priority: Must-have)
   - Journal-like hub for publications, whitepapers, and case reports.
   - Submission and review workflow for content contributors.
@@ -85,7 +91,14 @@ The platform consolidates clinical protocols, case libraries, condition database
   - Discussion groups by specialty with moderation and member discovery.
   - Mentorship matching for students and early-career professionals.
 
-- **Directory and discovery** (Priority: Must-have)
+- **Veterinarian directory and profiles** (Priority: Must-have)
+  - Directory of veterinarians with profiles showcasing credentials, specialties, and experience.
+  - Veterinarian profiles display verified certifications, professional background, and expertise tags.
+  - Search and filter veterinarians by location, specialty, credentials, and availability.
+  - Public and member-only profile sections with contact information and social links.
+  - Featured veterinarians on landing page and specialty pages.
+
+- **Clinic, lab, and facility directory** (Priority: Must-have)
   - Directory of clinics, specialists, labs, and shelters with filters.
   - Location and specialty search with basic contact details.
 
@@ -99,11 +112,13 @@ The platform consolidates clinical protocols, case libraries, condition database
 
 ### 5.2 Core experience
 
-- **Discover resources**: Users search guidelines, toolkits, and case library to solve clinical needs.
-  - Ensures high trust through structured metadata and review indicators.
-- **Learn and credential**: Users enroll in courses and track CE progress.
-  - Ensures measurable professional growth and retention.
-- **Connect and collaborate**: Users join discussion groups and find peers by expertise.
+- **Discover resources and expertise**: Users search guidelines, toolkits, case library, and blog content to solve clinical needs and learn from experts.
+  - Ensures high trust through structured metadata, review indicators, and author credentials.
+- **Find and connect with veterinarians**: Users browse veterinarian profiles to find specialists, build networks, and identify mentors.
+  - Ensures professional networking and peer discovery by specialty and location.
+- **Learn and credential**: Users enroll in courses, track CE progress, and read expert blog posts.
+  - Ensures measurable professional growth and retention through diverse learning formats.
+- **Connect and collaborate**: Users join discussion groups, follow blog content, and find peers by expertise.
   - Ensures community-led learning and mentorship.
 
 ### 5.3 Advanced features and edge cases
@@ -111,6 +126,8 @@ The platform consolidates clinical protocols, case libraries, condition database
 - Role-based restrictions for student vs professional-only content.
 - Private or invite-only discussion groups for sensitive topics.
 - Content versioning and update notifications for updated guidelines.
+- Blog post scheduling and publication workflows with editorial review.
+- Veterinarian profile verification and credential validation.
 
 ### 5.4 UI and UX highlights
 
@@ -120,7 +137,7 @@ The platform consolidates clinical protocols, case libraries, condition database
 
 ## 6. Narrative
 
-A veterinarian joins Baytic to access updated protocols, earns CE credits through webinars, and collaborates with peers in specialty groups. A student follows structured learning paths, gains mentorship, and builds a verified profile. Baytic becomes the trusted destination for veterinary knowledge, professional growth, and community connection.
+A veterinarian joins Baytic to access updated protocols, read expert blog posts, discover other specialists in their network, and earns CE credits through webinars. They build a verified professional profile showcasing credentials and expertise. A student follows structured learning paths, reads educational blog content, finds mentors by browsing veterinarian profiles, and gains mentorship in specialty groups. Baytic becomes the trusted destination for veterinary knowledge, professional growth, community connection, and veterinarian expertise discovery.
 
 ## 7. Success metrics
 
@@ -128,6 +145,8 @@ A veterinarian joins Baytic to access updated protocols, earns CE credits throug
 
 - Membership conversion rate by tier
 - Course enrollment and CE completion rates
+- Blog post views, engagement, and comment activity
+- Veterinarian profile views and discovery metrics
 - Discussion group engagement and retention
 
 ### 7.2 Business metrics
@@ -163,7 +182,8 @@ A veterinarian joins Baytic to access updated protocols, earns CE credits throug
 
 ### 8.4 Potential challenges
 
-- Content quality assurance and peer review capacity.
+- Content quality assurance and peer review capacity for blog posts and publications.
+- Veterinarian profile verification and credential validation processes.
 - Credentialing governance and renewal tracking.
 - Data privacy compliance across regions.
 
@@ -217,9 +237,19 @@ A veterinarian joins Baytic to access updated protocols, earns CE credits throug
   - Results show version date and review status.
   - Access follows membership rules.
 
-### 10.4 Use the case library
+### 10.4 Read and engage with blog posts
 
 - **ID**: GH-004
+- **Description**: As a veterinarian, I want to read expert blog posts on clinical topics so I can stay updated with latest practices and insights.
+- **Acceptance criteria**:
+  - Blog posts are searchable and filterable by topic, specialty, and publication date.
+  - Each post displays author name, credentials, publication date, and read time estimate.
+  - Members can comment on blog posts.
+  - Related blog posts are suggested at the end of each article.
+
+### 10.4b Use the case library
+
+- **ID**: GH-004b
 - **Description**: As a veterinarian, I want to access peer-reviewed cases so I can learn from real scenarios.
 - **Acceptance criteria**:
   - Cases are searchable and filterable by specialty.
@@ -253,9 +283,21 @@ A veterinarian joins Baytic to access updated protocols, earns CE credits throug
   - Posting requires membership login.
   - Moderation tools exist for administrators.
 
-### 10.8 Use the directory
+### 10.8 Browse veterinarian profiles
 
 - **ID**: GH-008
+- **Description**: As a user, I want to find and view veterinarian profiles so I can discover specialists, verify credentials, and connect with experts in specific areas.
+- **Acceptance criteria**:
+  - Veterinarian directory displays name, photo, credentials, specialty, location, and bio.
+  - Search and filter by location, specialty, credentials, and years of experience.
+  - Public profiles show verified credentials and expertise tags.
+  - Member profiles include contact information and social links.
+  - Featured veterinarians appear on specialty pages and landing page.
+  - Profile includes links to blog posts authored by the veterinarian.
+
+### 10.8b Use the clinic and facility directory
+
+- **ID**: GH-008b
 - **Description**: As a user, I want to find clinics and specialists so I can identify services in my area.
 - **Acceptance criteria**:
   - Directory filters include specialty and location.

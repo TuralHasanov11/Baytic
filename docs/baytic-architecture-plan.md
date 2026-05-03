@@ -5,11 +5,12 @@ Baytic will ship as a modular monolith optimized for a 12 to 16 week MVP. This a
 
 ## Discovery Summary
 - Primary users: veterinarians, students, clinics, researchers, and public visitors.
-- MVP scope: membership and portal (Phase 1), resources and publications (Phase 2).
+- MVP scope: membership and portal (Phase 1), resources, blog posts, veterinarian profiles, and publications (Phase 2).
+- Key features: blog post management, veterinarian directory with verified credentials and expertise tags, expert-authored content.
 - Non-goals: telemedicine, native mobile apps, AI diagnostics.
 - Core integrations: authentication, payments, email notifications.
-- Compliance: privacy controls, audit logging, data access and deletion requests.
-- Success metrics: membership conversion, CE completion, search success rate, uptime.
+- Compliance: privacy controls, audit logging, data access and deletion requests, veterinarian credential verification.
+- Success metrics: membership conversion, CE completion, search success rate, blog engagement, veterinarian profile discovery, uptime.
 
 ## Architecture Style
 ### Option A: Modular Monolith (Recommended)
@@ -106,22 +107,26 @@ graph TB
   API --> IdentityM[Identity and Access Management]
   API --> ProfileM[Profiles and Portal]
   API --> ContentM[Resources and Publications]
+  API --> BlogM[Blog Posts and Articles]
   API --> CaseM[Case Library]
+  API --> VetM[Veterinarian Directory]
   API --> EventM[Events and Announcements]
   API --> CommunityM[Discussion Groups]
-  API --> DirectoryM[Directory and Discovery]
   API --> SearchM[Search and Indexing]
   API --> AuditM[Audit Logging]
 
   IdentityM --> DB[(Relational Database)]
   ProfileM --> DB
   ContentM --> DB
+  BlogM --> DB
   CaseM --> DB
+  VetM --> DB
   EventM --> DB
   CommunityM --> DB
-  DirectoryM --> DB
   SearchM --> Search[(Search)]
   ContentM --> Storage[(Object Storage)]
+  BlogM --> Storage
+  VetM --> Storage
   AuditM --> LogStore[(Log Store)]
 ```
 
@@ -226,9 +231,9 @@ pie title Monthly Cost Distribution (Illustrative)
 
 **What you'll build**:
 1. **Phase 1**: Membership, authentication, portal, role-based access.
-2. **Phase 2**: Resources, case library, publications, search.
+2. **Phase 2**: Resources, blog posts, veterinarian profiles, case library, publications, search.
 3. **Phase 3**: CE tracking, credentials, events.
-4. **Phase 4**: Community discussion groups, directory, moderation.
+4. **Phase 4**: Community discussion groups, clinic directory, moderation.
 
 **Scaling challenges at 1K users**: None. System is idle most of the time.
 
@@ -238,33 +243,42 @@ pie title Monthly Cost Distribution (Illustrative)
 
 **What changes**:
 - Read replicas for database to handle increased query load.
-- Dedicated search service (OpenSearch) to offload indexing and full-text search from primary database.
+- Dedicated search service (OpenSearch) to offload indexing and full-text search from primary database, supporting blog posts, veterinarian profiles, and case library.
 - Multi-tier caching: object cache (Redis) + HTTP cache (CDN with longer TTL).
-- Background worker pool scaled independently for content publishing and email.
+- Background worker pool scaled independently for content publishing, blog scheduling, email, and veterinarian credential verification.
 - API rate limiting and throttling per role.
+- Blog content strategy: author recruitment, editorial review workflow, publication scheduling.
+- Veterinarian directory strategy: credential verification process, profile discovery optimization.
 
 **Database**:
 - Primary–replica setup; reads go to replicas, writes to primary.
 - Use connection pooling (PgBouncer) to limit connection overhead.
-- Consider read-only views for public content queries.
+- Consider read-only views for public content queries (resources, blog, veterinarian profiles).
 
 **Search**:
 - Migrate from PostgreSQL full-text to dedicated OpenSearch cluster.
+- Index all searchable content: resources, blog posts, cases, and veterinarian profiles.
 - Index updates via async job queue to avoid blocking writes.
 
 **Caching Strategy**:
 - Cache resource listings for 5–15 minutes (public content is stable).
+- Cache blog posts and veterinarian profiles for 10 minutes.
 - Cache directory search results for 10 minutes.
 - Cache CE tracking and member profiles (short TTL, 1–2 minutes due to frequent updates).
+
+**Content Strategy**:
+- Establish blog editorial guidelines and review SLA (<48 hours).
+- Implement veterinarian credential verification workflow (auto-checks + manual review).
 
 **Cost optimization**:
 - Use reserved capacity for compute and database if scaling trajectory is clear.
 - Consider managed database auto-scaling or on-demand replicas.
 
 **Scaling challenges at 100K users**: 
-- Database write latency (too many concurrent CE credit updates, event registrations).
+- Database write latency (too many concurrent CE credit updates, event registrations, blog publications).
 - Search indexing lag if content publishing is high.
-- CDN cache miss rate on large content libraries.
+- Veterinarian credential verification bottleneck.
+- CDN cache miss rate on large blog and veterinarian content libraries.
 
 ---
 
@@ -314,44 +328,46 @@ Baytic is organized into clear domain modules at the API layer. Respect these bo
    - Database tables: managed by Keycloak.
 
 2. **Portal Domain**
-   - Ownership: Member profiles, preferences, saved resources.
+   - Ownership: Member profiles, preferences, saved resources, saved blog posts.
    - Contracts: `GET /members/{id}/profile`, `PUT /members/{id}/profile`, `GET /members/{id}/saved-resources`.
-   - Database tables: `member_profiles`, `saved_resources`.
+   - Database tables: `member_profiles`, `saved_resources`, `saved_blog_posts`.
 
 3. **Content Domain** (Resources, Publications)
    - Ownership: Guidelines, toolkits, publications lifecycle (draft, review, published).
    - Contracts: `GET /resources`, `POST /resources` (admin only), `PUT /resources/{id}`, `GET /publications`.
    - Database tables: `resources`, `publications`, `resource_tags`, `audit_log`.
 
-4. **Case Library Domain**
+4. **Blog Domain**
+   - Ownership: Blog post management, authorship, publication workflow, comments.
+   - Contracts: `GET /blog`, `GET /blog/{id}`, `POST /blog/{id}/comments` (members), `POST /blog` (contributors).
+   - Database tables: `blog_posts`.
+   - Storage: Object storage for featured images and media.
+
+5. **Case Library Domain**
    - Ownership: Case submissions, peer review, case browsing.
    - Contracts: `GET /cases`, `POST /cases` (members), `GET /cases/{id}/comments` (members only).
    - Database tables: `cases`, `case_comments`, `case_reviews`.
 
-5. **Search Domain**
-   - Ownership: Search indexing, querying. Can be database (MVP) or dedicated service (growth+).
-   - Contracts: `GET /search?q={query}&type={resources|cases|publications}`.
+6. **Veterinarian Directory Domain**
+   - Ownership: Veterinarian profile management, credential verification, expertise tagging.
+   - Contracts: `GET /veterinarians`, `GET /veterinarians/{id}`, `POST /veterinarians` (self-registration), `PUT /veterinarians/{id}` (self/admin), `GET /veterinarians/{id}/blog-posts`.
+   - Database tables: `veterinarian_profiles`, `veterinarian_credentials`, `veterinarian_expertise_tags`, `profile_verification`.
+   - Storage: Object storage for profile photos and certificates.
+
+7. **Search Domain**
+   - Ownership: Search indexing, querying across resources, cases, blog posts, and veterinarian profiles. Can be database (MVP) or dedicated service (growth+).
+   - Contracts: `GET /search?q={query}&type={resources|cases|blog|veterinarians}`.
    - Storage: PostgreSQL GIN or OpenSearch index.
 
-6. **Community Domain**
+8. **Community Domain**
    - Ownership: Discussion groups, moderation, mentorship matching.
    - Contracts: `GET /groups`, `POST /groups/{id}/messages` (members).
    - Database tables: `discussion_groups`, `group_messages`, `moderation_queue`.
 
-7. **Events & Announcements Domain**
+9. **Events & Announcements Domain**
    - Ownership: Events calendar, registrations, announcements.
    - Contracts: `GET /events`, `POST /events/{id}/register`, `GET /announcements`.
    - Database tables: `events`, `event_registrations`, `announcements`.
-
-8. **Directory Domain**
-   - Ownership: Clinic and specialist directory, location-based search.
-   - Contracts: `GET /directory?specialty={}&location={}`, `GET /directory/{id}`.
-   - Database tables: `directory_listings`, `specialty_tags`.
-
-9. **Audit & Compliance Domain**
-   - Ownership: Audit logging for admin actions, content changes, data access.
-   - Contracts: Internal only; writes from all domains.
-   - Database tables: `audit_logs`.
 
 ---
 
@@ -387,7 +403,9 @@ GET /resources/{id}
 
 **Search Filters**:
 - Resources: `?specialty=small_animal&species=canine&status=published`.
+- Blog Posts: `?topic=nutrition&specialty=small_animal&published_after=2024-01-01`.
 - Cases: `?specialty=cardiology&species=feline`.
+- Veterinarians: `?specialty=dermatology&location=new_york&credentials=board_certified`.
 - Pagination on all list endpoints to avoid memory bloat.
 
 ---
@@ -395,9 +413,11 @@ GET /resources/{id}
 ### Async Patterns
 
 Use background workers (job queue) for:
-- Email notifications (signup, CE completion, announcements).
-- Search indexing (after content publish/update).
+- Email notifications (signup, CE completion, announcements, blog post publication).
+- Search indexing (after content publish/update, blog post publication, veterinarian profile changes).
 - CE credit batch processing (monthly or event-triggered).
+- Veterinarian credential verification workflows (background check, document validation).
+- Blog post scheduling and auto-publication.
 
 **Implementation**:
 - Job queue library (Hangfire).
@@ -533,14 +553,16 @@ For each action (read, write, delete):
 
 | Risk | Impact | Probability | Mitigation | Owner |
 |------|--------|-------------|-----------|-------|
-| **Content Quality Bottleneck** | Delayed publication, member churn | Medium | Define minimal review SLA (e.g., 48 hrs). Train reviewers. Phase 2 pre-task. | Product |
+| **Content Quality Bottleneck** | Delayed blog/resource publication, member churn | Medium | Define minimal review SLA (e.g., 48 hrs). Train reviewers. Phase 2 pre-task. | Product |
+| **Blog Post Spam/Misinformation** | Damage to credibility, member trust loss | Medium | Implement blog post moderation workflow. Verify author credentials before publication. | Product |
+| **Veterinarian Profile Verification Delays** | Incomplete directory, poor UX | Medium | Create streamlined credential verification process. Use third-party verification service if needed. | Product |
 | **Taxonomy Sprawl** | Search confusion, maintenance burden | Medium | Limit to 5–10 primary tags MVP. Expand post-launch based on usage. | Product |
 | **Access Control Bugs** | Security breach, compliance violation | Medium | Unit test all RBAC rules. Integration tests for cross-domain access. Audit log verification tests. | Engineering |
-| **Database Write Bottleneck** | Latency spikes during events | Low (MVP) → High (100K+) | Monitor write latency. Plan read replicas for growth phase. | Engineering |
-| **Search Latency** | Poor UX for resource discovery | Low (MVP) → Medium (100K+) | Monitor search QPS and latency. Migrate to OpenSearch if PG QPS > 500 reads/sec. | Engineering |
+| **Database Write Bottleneck** | Latency spikes during events or mass blog publishing | Low (MVP) → High (100K+) | Monitor write latency. Plan read replicas for growth phase. | Engineering |
+| **Search Latency** | Poor UX for resource/blog/veterinarian discovery | Low (MVP) → Medium (100K+) | Monitor search QPS and latency. Migrate to OpenSearch if PG QPS > 500 reads/sec. | Engineering |
 | **Auth Provider Outage** | Login unavailable, users locked out | Low | Use managed service with 99.9% SLA. Test fallback strategy. | Product |
 | **Data Privacy Violation** | GDPR fine, reputation damage | Low | Implement data export/delete, audit logging. Compliance review before launch. | Legal + Engineering |
-| **Insufficient Audit Logging** | Compliance failure, post-breach investigation impossible | Medium | Design audit schema early (Phase 1). Log all auth and admin actions. | Engineering |
+| **Insufficient Audit Logging** | Compliance failure, post-breach investigation impossible | Medium | Design audit schema early (Phase 1). Log all auth, admin, and credential verification actions. | Engineering |
 | **Vendor Lock-in** | High switching cost if provider fails | Low (MVP) | Use standard APIs (REST, HTTPS). Document all integrations (Auth, Payment, Email). | Architecture |
 
 ---
@@ -602,10 +624,24 @@ Future ADRs as project evolves:
    - Establish editorial guidelines and quality standards.
    - Identify initial content reviewers.
 
-9. **Search Implementation Plan**
-    - Decide on PostgreSQL full-text search rules.
+9. **Blog Content Strategy**
+   - Define blog post submission and editorial review workflow.
+   - Establish SLA for blog post review and publication (<48 hours target).
+   - Identify inaugural blog authors and editorial team.
+   - Design blog scheduling and auto-publication workflow.
+   - Plan blog author credential display and verification.
+
+10. **Veterinarian Directory Strategy**
+    - Design veterinarian profile verification workflow (credentials, licenses).
+    - Establish credential verification SLA and escalation process.
+    - Plan integration with third-party verification services (optional).
+    - Design veterinarian search and filter UX (specialty, location, credentials).
+    - Plan featured veterinarian selection logic for homepage and specialty pages.
+
+11. **Search Implementation Plan**
+    - Decide on PostgreSQL full-text search rules for resources, blog posts, and veterinarian profiles.
     - Design indexing strategy (real-time vs background batch).
-    - Create test data sets for search quality validation.
+    - Create test data sets for search quality validation across all content types.
 
 ---
 

@@ -1,6 +1,7 @@
 namespace Baytic.Api.Tests;
 
-public class UnitTest1
+[Trait("Category", "Unit")]
+public class BaseUnitTest
 {
     [Fact]
     public void Test1()

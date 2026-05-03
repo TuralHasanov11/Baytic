@@ -14,6 +14,33 @@ services:
     networks:
       - baytic-network
 
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=baytic
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "54321:5432"
+    networks:
+      - baytic-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: "pgadmin"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@postgres.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - baytic-network
+
 networks:
   baytic-network:
     name: baytic-network
@@ -21,3 +48,8 @@ networks:
 
 volumes:
   keycloak_data:
+    name: keycloak_data
+  postgres_data:
+    name: postgres_data
+  pgadmin_data:
+    name: pgadmin_data

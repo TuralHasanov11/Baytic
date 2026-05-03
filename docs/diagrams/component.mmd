@@ -5,20 +5,26 @@ graph TB
   API --> AuthM[Auth and Membership]
   API --> ProfileM[Profiles and Portal]
   API --> ContentM[Resources and Publications]
+  API --> BlogM[Blog Posts and Articles]
   API --> CaseM[Case Library]
+  API --> VetM[Veterinarian Directory]
   API --> EventM[Events and Announcements]
   API --> CommunityM[Discussion Groups]
-  API --> DirectoryM[Directory and Discovery]
+  API --> ClinicM[Clinic and Facility Directory]
   API --> SearchM[Search and Indexing]
   API --> AuditM[Audit Logging]
 
   AuthM --> DB[(Relational Database)]
   ProfileM --> DB
   ContentM --> DB
+  BlogM --> DB
   CaseM --> DB
+  VetM --> DB
   EventM --> DB
   CommunityM --> DB
-  DirectoryM --> DB
+  ClinicM --> DB
   SearchM --> Search[(Search)]
   ContentM --> Storage[(Object Storage)]
+  BlogM --> Storage
+  VetM --> Storage
   AuditM --> LogStore[(Log Store)]
