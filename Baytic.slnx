@@ -8,6 +8,7 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Baytic.Api.Tests/Baytic.Api.Tests.csproj" />
+    <Project Path="tests/Baytic.Domain.Tests/Baytic.Domain.Tests.csproj" />
     <Project Path="tests/SharedKernel.Tests/SharedKernel.Tests.csproj" />
   </Folder>
 </Solution>

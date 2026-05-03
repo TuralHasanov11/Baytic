@@ -6,6 +6,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Baytic.Api.Tests</RootNamespace>
     <TargetFramework>net10.0</TargetFramework>
+    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
   </PropertyGroup>
 
   <ItemGroup>
