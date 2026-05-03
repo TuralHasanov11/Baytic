@@ -1,0 +1,1 @@
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/TuralHasanov11/Baytic/badge)](https://scorecard.dev/viewer/?uri=github.com/TuralHasanov11/Baytic)
