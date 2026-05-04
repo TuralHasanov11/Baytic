@@ -24,7 +24,7 @@ public class BaseFactory : WebApplicationFactory<Program>, IAsyncLifetime
 
     public const string ClientSecret = "your-client-secret-for-web-api";
 
-    public const string RedirectUri = "http://localhost:5000/signin-oidc";
+    public const string RedirectUri = "http://localhost:5103/signin-oidc";
 
     public const string TokenUserName = "test-user";
 
@@ -42,11 +42,6 @@ public class BaseFactory : WebApplicationFactory<Program>, IAsyncLifetime
         .WithDatabase("catalog")
         .WithWaitStrategy(Wait.ForUnixContainer())
         .Build();
-
-    public BaseFactory()
-    {
-        UseKestrel(options => options.ListenLocalhost(5002));
-    }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {

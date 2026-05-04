@@ -14,12 +14,8 @@
       "directAccessGrantsEnabled": true,
       "clientAuthenticatorType": "client-secret",
       "secret": "your-client-secret-for-web-api",
-      "redirectUris": [
-        "http://localhost:5000/signin-oidc"
-      ],
-      "webOrigins": [
-        "+"
-      ]
+      "redirectUris": ["http://localhost:5103/signin-oidc"],
+      "webOrigins": ["+"]
     }
   ],
   "users": [

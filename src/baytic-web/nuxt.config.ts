@@ -12,7 +12,10 @@ export default defineNuxtConfig({
         realm: '',
         redirectURL: ''
       }
-    }
+    },
+    public: {
+      apiBase: 'http://localhost:5003/api',
+    },
   },
 
   modules: [

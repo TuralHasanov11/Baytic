@@ -25,7 +25,7 @@
             <td class="px-6 py-4 text-sm">{{ post.title }}</td>
             <td class="px-6 py-4 text-sm">{{ post.status }}</td>
             <td class="px-6 py-4 text-sm">{{ post.authorId }}</td>
-            <td class="px-6 py-4 text-sm">{{ formatDate(post.publishedAt) }}</td>
+            <td class="px-6 py-4 text-sm">{{ post.publishedAt ? formatDate(post.publishedAt) : '-' }}</td>
           </tr>
         </tbody>
       </table>

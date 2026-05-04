@@ -2,10 +2,10 @@
   <div>
     <NuxtLink to="/admin/blog" class="text-emerald-600 hover:text-emerald-700 font-medium mb-4 inline-block">← Back</NuxtLink>
     <h1 class="text-3xl font-bold text-slate-900">Edit Post</h1>
-    <form @submit.prevent="submit" class="space-y-6 mt-8">
+    <form class="space-y-6 mt-8" @submit.prevent="submit">
       <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
         <label class="block text-sm font-semibold text-slate-900 mb-2">Title</label>
-        <input v-model="form.title" type="text" required class="w-full px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+        <input v-model="form.title" type="text" required class="w-full px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500" >
       </div>
       <div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
         <label class="block text-sm font-semibold text-slate-900 mb-2">Content</label>

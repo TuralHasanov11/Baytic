@@ -1,1 +1,13 @@
 services:
+  bayticapi:
+    image: bayticapi
+    container_name: baytib_api
+    build:
+      context: .
+      dockerfile: src/Baytic.Api/Dockerfile
+      args:
+        - configuration=Debug
+    ports:
+      - 5003:5003
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

@@ -1,0 +1,106 @@
+{
+    "tasks": [
+        {
+            "type": "docker-build",
+            "label": "Baytib.Api docker-build: debug",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "baytic:dev",
+                "target": "base",
+                "dockerfile": "${workspaceFolder}/src/Baytic.Api/Dockerfile",
+                "context": "${workspaceFolder}",
+                "pull": true
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/Baytic.Api/Baytic.Api.csproj"
+            }
+        },
+        {
+            "type": "docker-build",
+            "label": "Baytib.Api docker-build: release",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "baytic:latest",
+                "dockerfile": "${workspaceFolder}/src/Baytic.Api/Dockerfile",
+                "context": "${workspaceFolder}",
+                "platform": {
+                    "os": "linux",
+                    "architecture": "amd64"
+                },
+                "pull": true
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/Baytic.Api/Baytic.Api.csproj"
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "Baytib.Api docker-run: debug",
+            "dependsOn": [
+                "Baytib.Api docker-build: debug"
+            ],
+            "dockerRun": {},
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/Baytic.Api/Baytic.Api.csproj",
+                "enableDebugging": true
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "Baytib.Api docker-run: release",
+            "dependsOn": [
+                "Baytib.Api docker-build: release"
+            ],
+            "dockerRun": {},
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/Baytic.Api/Baytic.Api.csproj"
+            }
+        },
+        {
+            "label": "compose: up",
+            "type": "process",
+            "command": "docker-compose",
+            "args": [
+                "-f",
+                "docker-compose.yaml",
+                "-f",
+                "docker-compose.override.yaml",
+                "up",
+                "-d",
+                "--build"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "compose: down",
+            "type": "process",
+            "command": "docker-compose",
+            "args": [
+                "-f",
+                "docker-compose.yaml",
+                "-f",
+                "docker-compose.override.yaml",
+                "down"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "compose: logs",
+            "type": "process",
+            "command": "docker-compose",
+            "args": [
+                "-f",
+                "docker-compose.yaml",
+                "-f",
+                "docker-compose.override.yaml",
+                "logs",
+                "-f"
+            ],
+            "problemMatcher": []
+        },
+    ]
+}
