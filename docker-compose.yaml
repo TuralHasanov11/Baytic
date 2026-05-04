@@ -2,7 +2,7 @@ services:
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.6.1
-    container_name: keycloak
+    container_name: baytib_keycloak
     command: start-dev
     ports:
       - "127.0.0.1:8080:8080"
@@ -16,7 +16,7 @@ services:
 
   postgres:
     image: postgres:latest
-    container_name: postgres
+    container_name: baytib_postgres
     environment:
       - POSTGRES_DB=baytic
       - POSTGRES_USER=postgres
@@ -30,7 +30,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: "pgadmin"
+    container_name: "baytib_pgadmin"
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@postgres.com
       - PGADMIN_DEFAULT_PASSWORD=postgres

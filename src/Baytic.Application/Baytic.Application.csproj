@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Baytic.Infrastructure\Baytic.Infrastructure.csproj" />
     <ProjectReference Include="..\Baytic.Domain\Baytic.Domain.csproj" />
   </ItemGroup>
 

@@ -61,6 +61,9 @@ obj/Debug/net10.0/
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
  Baytic.Infrastructure.AssemblyInfo.cs
  Baytic.Infrastructure.GlobalUsings.g.cs
+Persistence/
+ ApplicationDbContext.cs
+ Configurations/BlogPostConfiguration.cs
 
 [metadataReferences]
 ../
@@ -378,6 +381,7 @@ obj/Debug/net10.0/
 <NUGET>/
  microsoft.aspnetcore.authentication.jwtbearer/10.0.7/lib/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
  microsoft.entityframeworkcore.abstractions/10.0.7/lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+ microsoft.entityframeworkcore.relational/10.0.7/lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll
  microsoft.entityframeworkcore/10.0.7/lib/net10.0/Microsoft.EntityFrameworkCore.dll
  microsoft.extensions.compliance.abstractions/10.4.0/lib/net10.0/Microsoft.Extensions.Compliance.Abstractions.dll
  microsoft.extensions.compliance.redaction/10.4.0/lib/net10.0/Microsoft.Extensions.Compliance.Redaction.dll
@@ -387,6 +391,8 @@ obj/Debug/net10.0/
  microsoft.identitymodel.protocols.openidconnect/8.0.1/lib/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
  microsoft.identitymodel.protocols/8.0.1/lib/net9.0/Microsoft.IdentityModel.Protocols.dll
  microsoft.identitymodel.tokens/8.0.1/lib/net9.0/Microsoft.IdentityModel.Tokens.dll
+ npgsql.entityframeworkcore.postgresql/6.0.22/lib/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+ npgsql/6.0.10/lib/net6.0/Npgsql.dll
  system.identitymodel.tokens.jwt/8.0.1/lib/net9.0/System.IdentityModel.Tokens.Jwt.dll
 
 [analyzerReferences]
@@ -413,6 +419,9 @@ obj/Debug/net10.0/
  Microsoft.CodeAnalysis.CodeStyle.Fixes.dll
  Microsoft.CodeAnalysis.CSharp.CodeStyle.dll
  Microsoft.CodeAnalysis.CSharp.CodeStyle.Fixes.dll
+<NUGET>/microsoft.codeanalysis.analyzers/3.11.0/analyzers/dotnet/cs/
+ Microsoft.CodeAnalysis.Analyzers.dll
+ Microsoft.CodeAnalysis.CSharp.Analyzers.dll
 <NUGET>/microsoft.entityframeworkcore.analyzers/10.0.7/analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll
 
 [analyzerConfigFiles]

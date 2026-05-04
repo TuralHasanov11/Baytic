@@ -55,6 +55,7 @@ TemporaryDependencyNodeTargetIdentifier=net10.0
 /warnaserror+:NU1605,SYSLIB0011
 
 [sourceFiles]
+Blog/BlogPostEndpoints.cs
 Exceptions/ProblemExceptionHandler.cs
 Extensions.cs
 Identity/KeycloakOptions.cs
@@ -387,6 +388,7 @@ Program.cs
  microsoft.aspnetcore.diagnostics.middleware/10.5.0/lib/net10.0/Microsoft.AspNetCore.Diagnostics.Middleware.dll
  microsoft.aspnetcore.openapi/9.0.10/lib/net9.0/Microsoft.AspNetCore.OpenApi.dll
  microsoft.entityframeworkcore.abstractions/10.0.7/lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+ microsoft.entityframeworkcore.relational/6.0.22/lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll
  microsoft.entityframeworkcore/10.0.7/lib/net10.0/Microsoft.EntityFrameworkCore.dll
  microsoft.extensions.ambientmetadata.application/10.5.0/lib/net10.0/Microsoft.Extensions.AmbientMetadata.Application.dll
  microsoft.extensions.compliance.abstractions/10.5.0/lib/net10.0/Microsoft.Extensions.Compliance.Abstractions.dll
@@ -405,6 +407,8 @@ Program.cs
  microsoft.identitymodel.protocols/8.0.1/lib/net9.0/Microsoft.IdentityModel.Protocols.dll
  microsoft.identitymodel.tokens/8.0.1/lib/net9.0/Microsoft.IdentityModel.Tokens.dll
  microsoft.openapi/1.6.17/lib/netstandard2.0/Microsoft.OpenApi.dll
+ npgsql.entityframeworkcore.postgresql/6.0.22/lib/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+ npgsql/6.0.10/lib/net6.0/Npgsql.dll
  opentelemetry.api.providerbuilderextensions/1.15.3/lib/net10.0/OpenTelemetry.Api.ProviderBuilderExtensions.dll
  opentelemetry.api/1.15.3/lib/net10.0/OpenTelemetry.Api.dll
  opentelemetry.exporter.opentelemetryprotocol/1.15.3/lib/net10.0/OpenTelemetry.Exporter.OpenTelemetryProtocol.dll

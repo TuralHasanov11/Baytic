@@ -1,5 +1,9 @@
+using Baytic.Api.Blog;
 using Baytic.Api;
 using Baytic.Api.Identity;
+using Baytic.Application.Blog;
+using Baytic.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Scalar.AspNetCore;
 
@@ -10,6 +14,12 @@ builder.WebHost.UseKestrel(options => options.AddServerHeader = false);
 
 // Add service defaults & Aspire client integrations.
 builder.AddServiceDefaults();
+
+var connectionString = builder.Configuration.GetConnectionString("Baytic")
+    ?? throw new InvalidOperationException("Connection string 'Baytic' was not found.");
+
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddScoped<BlogPostService>();
 
 var app = builder.Build();
 
@@ -40,6 +50,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapBlogEndpoints();
 app.MapDefaultEndpoints();
 
 await app.RunAsync();
