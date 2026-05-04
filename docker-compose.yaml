@@ -58,6 +58,23 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5003
 
+  baytic-web:
+    image: baytic-web:latest
+    container_name: baytib_web
+    build:
+      context: ./src/baytic-web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000
+    depends_on:
+      - bayticapi
+      - keycloak
+    networks:
+      - baytic-network
+
 networks:
   baytic-network:
     name: baytic-network
