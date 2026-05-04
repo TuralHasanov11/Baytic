@@ -58,6 +58,7 @@ TemporaryDependencyNodeTargetIdentifier=net10.0
 BaseFactory.cs
 BaseIntegrationTest.cs
 BaseUnitTest.cs
+Blog/BlogPostApiTests.cs
 Health/HealthCheckApiTests.cs
 HttpClientExtensions.cs
 Identity/AuthenticatedApiTests.cs
@@ -398,7 +399,6 @@ WebAccessTokenProvider.cs
  microsoft.bcl.asyncinterfaces/6.0.0/lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll
  microsoft.diasymreader/2.2.3/lib/net10.0/Microsoft.DiaSymReader.dll
  microsoft.entityframeworkcore.abstractions/10.0.7/lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll
- microsoft.entityframeworkcore.relational/6.0.22/lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll
  microsoft.entityframeworkcore/10.0.7/lib/net10.0/Microsoft.EntityFrameworkCore.dll
  microsoft.extensions.ambientmetadata.application/10.5.0/lib/net10.0/Microsoft.Extensions.AmbientMetadata.Application.dll
  microsoft.extensions.compliance.abstractions/10.5.0/lib/net10.0/Microsoft.Extensions.Compliance.Abstractions.dll
@@ -440,8 +440,6 @@ WebAccessTokenProvider.cs
   Microsoft.TestPlatform.CoreUtilities.dll
   Microsoft.TestPlatform.PlatformAbstractions.dll
   Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
- npgsql.entityframeworkcore.postgresql/6.0.22/lib/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
- npgsql/6.0.10/lib/net6.0/Npgsql.dll
  nuget.frameworks/5.11.0/lib/netstandard2.0/NuGet.Frameworks.dll
  opentelemetry.api.providerbuilderextensions/1.15.3/lib/net10.0/OpenTelemetry.Api.ProviderBuilderExtensions.dll
  opentelemetry.api/1.15.3/lib/net10.0/OpenTelemetry.Api.dll

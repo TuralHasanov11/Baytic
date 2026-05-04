@@ -88,8 +88,7 @@ public class BaseFactory : WebApplicationFactory<Program>, IAsyncLifetime
                 var logger = scopedServices
                     .GetRequiredService<ILogger<BaseFactory>>();
 
-                // Ensure the database is created.
-                db.Database.EnsureCreated();
+                db.Database.Migrate();
 
                 try
                 {

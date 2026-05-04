@@ -3,6 +3,18 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  runtimeConfig: {
+    oauth: {
+      keycloak: {
+        clientId: '',
+        clientSecret: '',
+        serverUrl: '',
+        realm: '',
+        redirectURL: ''
+      }
+    }
+  },
+
   modules: [
     '@nuxt/a11y',
     '@nuxt/eslint',
@@ -10,6 +22,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     '@nuxt/ui',
     '@nuxt/scripts',
-    '@nuxt/hints'
+    '@nuxt/hints',
+    'nuxt-auth-utils'
   ]
 })
