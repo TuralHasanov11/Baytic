@@ -7,8 +7,8 @@ namespace Baytic.Api.OpenApi;
 public class InfoTransformer : IOpenApiDocumentTransformer
 {
     public Task TransformAsync(
-        OpenApiDocument document, 
-        OpenApiDocumentTransformerContext context, 
+        OpenApiDocument document,
+        OpenApiDocumentTransformerContext context,
         CancellationToken cancellationToken)
     {
         var openApiInfo = context.ApplicationServices.GetRequiredService<IOptions<OpenApiInfo>>();

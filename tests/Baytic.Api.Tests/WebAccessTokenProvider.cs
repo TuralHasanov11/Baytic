@@ -54,7 +54,7 @@ public class WebAccessTokenProvider
         // Check if we have a cached token that hasn't expired
         if (_tokenCache.TryGetValue(cacheKey, out var cachedToken) && !cachedToken.IsExpired)
         {
-            _logger.LogDebug("Using cached token for {ClientId} (expires in {ExpiresIn}s)", 
+            _logger.LogDebug("Using cached token for {ClientId} (expires in {ExpiresIn}s)",
                 clientId, (cachedToken.ExpiresAt - DateTime.UtcNow).TotalSeconds);
             return cachedToken.AccessToken;
         }
@@ -87,7 +87,7 @@ public class WebAccessTokenProvider
             discoveryDocumentResponse.EnsureSuccessStatusCode();
 
             var discoveryDocument = await discoveryDocumentResponse.Content.ReadFromJsonAsync<Dictionary<string, string>>();
-            
+
             if (discoveryDocument is null || !discoveryDocument.TryGetValue("token_endpoint", out var endpoint))
             {
                 throw new InvalidOperationException(
@@ -135,15 +135,15 @@ public class WebAccessTokenProvider
         }
         catch (HttpRequestException e)
         {
-            _logger.LogError(e, 
-                "HTTP error while acquiring access token for client {ClientId} with scope {Scope}", 
+            _logger.LogError(e,
+                "HTTP error while acquiring access token for client {ClientId} with scope {Scope}",
                 clientId, scope);
             throw new InvalidOperationException($"Failed to acquire access token from Keycloak: {e.Message}", e);
         }
         catch (Exception e)
         {
-            _logger.LogError(e, 
-                "Unexpected error while acquiring access token for client {ClientId}", 
+            _logger.LogError(e,
+                "Unexpected error while acquiring access token for client {ClientId}",
                 clientId);
             throw new InvalidOperationException("Failed to acquire access token from Keycloak.", e);
         }

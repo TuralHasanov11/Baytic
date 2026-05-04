@@ -9,9 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import BlogPostCard from '~/components/BlogPostCard.vue'
-import type { BlogPostList } from '~/types/BlogPost'
-
 const props = defineProps<{
   posts: BlogPostList
   loading?: boolean

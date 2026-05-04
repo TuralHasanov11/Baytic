@@ -385,6 +385,7 @@ obj/Debug/net10.0/
  microsoft.diasymreader/2.2.3/lib/net10.0/Microsoft.DiaSymReader.dll
  microsoft.entityframeworkcore.abstractions/10.0.7/lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll
  microsoft.entityframeworkcore.inmemory/10.0.7/lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll
+ microsoft.entityframeworkcore.relational/10.0.7/lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll
  microsoft.entityframeworkcore/10.0.7/lib/net10.0/Microsoft.EntityFrameworkCore.dll
  microsoft.extensions.compliance.abstractions/10.4.0/lib/net10.0/Microsoft.Extensions.Compliance.Abstractions.dll
  microsoft.extensions.compliance.redaction/10.4.0/lib/net10.0/Microsoft.Extensions.Compliance.Redaction.dll
@@ -410,6 +411,8 @@ obj/Debug/net10.0/
  microsoft.testing.extensions.trxreport.abstractions/2.0.2/lib/net9.0/Microsoft.Testing.Extensions.TrxReport.Abstractions.dll
  microsoft.testing.platform.msbuild/2.0.2/lib/net9.0/Microsoft.Testing.Extensions.MSBuild.dll
  microsoft.testing.platform/2.1.0/lib/net9.0/Microsoft.Testing.Platform.dll
+ npgsql.entityframeworkcore.postgresql/10.0.1/lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+ npgsql/10.0.2/lib/net10.0/Npgsql.dll
  system.identitymodel.tokens.jwt/8.0.1/lib/net9.0/System.IdentityModel.Tokens.Jwt.dll
  xunit.v3.assert/3.2.2/lib/net8.0/xunit.v3.assert.dll
  xunit.v3.common/3.2.2/lib/netstandard2.0/xunit.v3.common.dll

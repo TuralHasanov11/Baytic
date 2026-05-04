@@ -4,6 +4,7 @@ using DotNet.Testcontainers.Builders;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,7 +65,13 @@ public class BaseFactory : WebApplicationFactory<Program>, IAsyncLifetime
 
         builder.ConfigureServices(services =>
         {
-            services.RemoveAll<DbContextOptions<ApplicationDbContext>>();
+            var dbContextDescriptor = services.SingleOrDefault(
+                d => d.ServiceType == typeof(IDbContextOptionsConfiguration<ApplicationDbContext>));
+
+            if (dbContextDescriptor != null)
+            {
+                services.Remove(dbContextDescriptor);
+            }
 
             services.AddDbContextPool<ApplicationDbContext>((sp, options) =>
             {
@@ -92,8 +99,8 @@ public class BaseFactory : WebApplicationFactory<Program>, IAsyncLifetime
 
                 try
                 {
-                // Seed the database with test data.
-                    ApplicationDbContextSeed.SeedAsync(db, loggerFactory).Wait();
+                    // Seed the database with test data.
+                    ApplicationDbContextSeed.SeedAsync(db, loggerFactory);
                 }
                 catch (Exception ex)
                 {

@@ -185,8 +185,8 @@ public sealed record VeterinarianCredential(Guid CredentialId, string Credential
 public sealed record VeterinarianProfileLink(Guid LinkId, string Label, string Url);
 
 public sealed record VeterinarianCredentialVerifiedDomainEvent(
-    Guid VeterinarianProfileId, 
-    UserId UserId, 
-    Guid CredentialId, 
+    Guid VeterinarianProfileId,
+    UserId UserId,
+    Guid CredentialId,
     DateTime OccurredOn)
     : DomainEvent(OccurredOn);

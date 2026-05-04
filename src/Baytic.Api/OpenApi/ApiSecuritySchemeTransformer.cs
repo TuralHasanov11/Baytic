@@ -7,12 +7,12 @@ using Microsoft.OpenApi.Models;
 
 namespace Baytic.Api.OpenApi;
 
-public class ApiSecuritySchemeTransformer(IAuthenticationSchemeProvider authenticationSchemeProvider) 
+public class ApiSecuritySchemeTransformer(IAuthenticationSchemeProvider authenticationSchemeProvider)
     : IOpenApiDocumentTransformer
 {
     public async Task TransformAsync(
-        OpenApiDocument document, 
-        OpenApiDocumentTransformerContext context, 
+        OpenApiDocument document,
+        OpenApiDocumentTransformerContext context,
         CancellationToken cancellationToken)
     {
         var authenticationSchemes = await authenticationSchemeProvider.GetAllSchemesAsync();
