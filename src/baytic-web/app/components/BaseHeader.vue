@@ -7,7 +7,7 @@
         </span>
         <span class="leading-tight">
           <span class="block text-sm font-semibold uppercase tracking-[0.28em] text-emerald-300/90">Baytic</span>
-          <span class="block text-xs text-slate-300">Keycloak auth for the member portal</span>
+          <span class="block text-xs text-slate-300">{{ $t('header.subtitle') }}</span>
         </span>
       </NuxtLink>
 
@@ -16,19 +16,49 @@
           to="/"
           class="rounded-full px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
         >
-          Home
+          {{ $t('header.home') }}
+        </NuxtLink>
+        <NuxtLink
+          to="/about"
+          class="rounded-full px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
+        >
+          {{ $t('header.about') }}
+        </NuxtLink>
+        <NuxtLink
+          to="/history"
+          class="rounded-full px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
+        >
+          {{ $t('header.history') }}
+        </NuxtLink>
+        <NuxtLink
+          to="/membership"
+          class="rounded-full px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
+        >
+          {{ $t('header.membership') }}
+        </NuxtLink>
+        <NuxtLink
+          to="/governance"
+          class="rounded-full px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
+        >
+          {{ $t('header.governance') }}
         </NuxtLink>
         <NuxtLink
           to="/blog"
           class="rounded-full px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
         >
-          Blog
+          {{ $t('header.blog') }}
+        </NuxtLink>
+        <NuxtLink
+          to="/veterinarians"
+          class="rounded-full px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
+        >
+          {{ $t('header.veterinarians') }}
         </NuxtLink>
         <NuxtLink
           to="/dashboard"
           class="rounded-full px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
         >
-          Dashboard
+          {{ $t('header.dashboard') }}
         </NuxtLink>
       </nav>
 

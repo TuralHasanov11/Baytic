@@ -26,8 +26,20 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/scripts',
     '@nuxt/hints',
-    'nuxt-auth-utils'
+    'nuxt-auth-utils',
+    '@nuxtjs/i18n'
   ],
+
+  i18n: {
+    locales: [
+      { code: 'az', name: 'Azərbaycan', iso: 'az', file: 'az.json' },
+      { code: 'en', name: 'English', iso: 'en', file: 'en.json' }
+    ],
+    defaultLocale: 'az',
+    lazy: true,
+    langDir: 'locales/',
+    detectBrowserLanguage: false
+  },
 
   css: ['~/assets/css/main.css']
 })

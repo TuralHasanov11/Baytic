@@ -1,0 +1,108 @@
+import type { VeterinarianProfile } from '~/shared/types/Veterinarian'
+
+export const MOCK_VETERINARIAN_PROFILES: VeterinarianProfile[] = [
+  {
+    id: 'vet-1',
+    userId: 'user-001',
+    displayName: 'Dr. Aylin Huseynova',
+    biography: 'Small animal clinician focused on dermatology, preventive care, and client education.',
+    location: 'Baku, Azerbaijan',
+    yearsOfExperience: 12,
+    verificationStatus: 'Verified',
+    isFeatured: true,
+    credentials: [
+      {
+        credentialId: 'cred-1',
+        credentialName: 'Board Certification in Small Animal Medicine',
+        issuer: 'Azerbaijan Veterinary Board',
+        issuedOn: '2022-04-18',
+        expiresOn: '2027-04-18',
+        isVerified: true,
+        verifiedBy: 'admin-baytic',
+        verifiedAtUtc: '2026-05-01T09:30:00Z',
+      },
+    ],
+    expertiseTags: ['small-animal', 'dermatology', 'preventive-care'],
+    profileLinks: [
+      { linkId: 'link-1', label: 'Clinic profile', url: 'https://example.com/clinic/aylin' },
+    ],
+  },
+  {
+    id: 'vet-2',
+    userId: 'user-002',
+    displayName: 'Dr. Kamran Aliyev',
+    biography: 'Equine veterinarian with a strong interest in sports medicine and orthopedic recovery.',
+    location: 'Ganja, Azerbaijan',
+    yearsOfExperience: 9,
+    verificationStatus: 'Verified',
+    isFeatured: false,
+    credentials: [
+      {
+        credentialId: 'cred-2',
+        credentialName: 'Equine Sports Medicine Certificate',
+        issuer: 'Regional Equine Association',
+        issuedOn: '2021-09-01',
+        expiresOn: null,
+        isVerified: true,
+        verifiedBy: 'admin-baytic',
+        verifiedAtUtc: '2026-05-02T14:10:00Z',
+      },
+    ],
+    expertiseTags: ['equine', 'sports-medicine', 'orthopedics'],
+    profileLinks: [
+      { linkId: 'link-2', label: 'Research publications', url: 'https://example.com/research/kamran' },
+    ],
+  },
+  {
+    id: 'vet-3',
+    userId: 'user-003',
+    displayName: 'Dr. Leyla Karimova',
+    biography: 'Companion animal veterinarian passionate about internal medicine and mentorship.',
+    location: 'Sumqayit, Azerbaijan',
+    yearsOfExperience: 6,
+    verificationStatus: 'Pending',
+    isFeatured: true,
+    credentials: [
+      {
+        credentialId: 'cred-3',
+        credentialName: 'Advanced Internal Medicine Course',
+        issuer: 'Baytic Learning Network',
+        issuedOn: '2024-11-12',
+        expiresOn: null,
+        isVerified: false,
+        verifiedBy: null,
+        verifiedAtUtc: null,
+      },
+    ],
+    expertiseTags: ['internal-medicine', 'mentorship', 'cat-care'],
+    profileLinks: [
+      { linkId: 'link-3', label: 'Blog articles', url: 'https://example.com/blog/leyla' },
+    ],
+  },
+  {
+    id: 'vet-4',
+    userId: 'user-004',
+    displayName: 'Dr. Orkhan Mammadov',
+    biography: 'Mixed practice veterinarian supporting rural clinics and herd health planning.',
+    location: 'Sheki, Azerbaijan',
+    yearsOfExperience: 15,
+    verificationStatus: 'Verified',
+    isFeatured: false,
+    credentials: [
+      {
+        credentialId: 'cred-4',
+        credentialName: 'Herd Health and Biosecurity Training',
+        issuer: 'Agricultural Veterinary Institute',
+        issuedOn: '2020-02-05',
+        expiresOn: '2028-02-05',
+        isVerified: true,
+        verifiedBy: 'admin-baytic',
+        verifiedAtUtc: '2026-05-03T08:45:00Z',
+      },
+    ],
+    expertiseTags: ['mixed-practice', 'herd-health', 'biosecurity'],
+    profileLinks: [
+      { linkId: 'link-4', label: 'Clinic page', url: 'https://example.com/clinic/orkhan' },
+    ],
+  },
+]
